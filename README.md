@@ -1,49 +1,55 @@
 # Notification Bundle
 
-The notification bundle was created for the planmylife.io to manage all notifications. 
+The notification bundle was created for the planmylife.io to manage all notifications. Have fun with it.
 
 ## Installation
 
 ### Step 1: Download the Bundle
 
-	$ composer require javiereguiluz/easyadmin-bundle
+	composer require javiereguiluz/easyadmin-bundle
 
 This command requires you to have Composer installed globally, as explained in the Composer documentation.
 
 ### Step 2: Enable the Bundle
 
-	<?php
-	// app/AppKernel.php
+``` php
+<?php
+// app/AppKernel.php
 
-	// ...
-	class AppKernel extends Kernel
-	{
-	    public function registerBundles()
-	    {
-	        $bundles = array(
-	            // ...
-	            new PlanMyLife\NotificationBundle\PlanMyLifeNotificationBundle(),
-	        );
-	    }
+// ...
+class AppKernel extends Kernel
+{
+    public function registerBundles()
+    {
+        $bundles = array(
+            // ...
+            new PlanMyLife\NotificationBundle\PlanMyLifeNotificationBundle(),
+        );
+    }
 
-	    // ...
+    // ...
 	}
+```
+
 
 ### Step 3: Configure factory and builder
 
-	# app/config/routing.yml
-	pml_notification:
-	    factory: '@notification.factory'
-	    builders:
-	        std:
-	            class: stdClass
-	            builder: PlanMyLife\NotificationBundle\Builder\StdNotificationBuilder
-	        user:
-	        	class: Acme\MainBundle\Entity\User
-	            builder: Acme\MainBundle\Builder\UserNotificationBuilder
+``` yaml
+# app/config/routing.yml
+pml_notification:
+    factory: '@notification.factory'
+    builders:
+        std:
+            class: stdClass
+            builder: PlanMyLife\NotificationBundle\Builder\StdNotificationBuilder
+        user:
+        	class: Acme\MainBundle\Entity\User
+            builder: Acme\MainBundle\Builder\UserNotificationBuilder
+```
 
 ### Step 4: Add your builders classes
 
+``` php
 	<?php
 
 	namespace Acme\MainBundle\Builder;
@@ -73,11 +79,13 @@ This command requires you to have Composer installed globally, as explained in t
 	        return $notification;
 	    }
 	}
+```
 
 ## Additionnal manager
 
 ### Step 1 : Define Manager class
 
+``` php
 	<?php
 
 	namespace PlanMyLife\NotificationBundle\Manager;
@@ -104,47 +112,55 @@ This command requires you to have Composer installed globally, as explained in t
 	        $this->session->getFlashBag()->add($notification->getType(), $notification->getContent());
 	    }
 	}
+```
 
 ### Step 2 : Define your manager service
 
-	services:
-	    notification.manager.flash_bag:
-        class: PlanMyLife\NotificationBundle\Manager\FlashBagNotificationManager
-        arguments:
-            - "@session"
-
+``` yaml
+services:
+    notification.manager.flash_bag:
+    class: PlanMyLife\NotificationBundle\Manager\FlashBagNotificationManager
+    arguments:
+        - "@session"
+```
 ### Step 3 : Define your listener 
 
-	<?php
+``` php
+<?php
 
-	namespace PlanMyLife\NotificationBundle\EventListener;
+namespace PlanMyLife\NotificationBundle\EventListener;
 
-	class FlashBagNotificationListener extends NotificationListener implements NotificationListenerInterface
-	{
-	    public function getName()
-	    {
-	        return 'flash_bag';
-	    }
-	}
+class FlashBagNotificationListener extends NotificationListener implements NotificationListenerInterface
+{
+    public function getName()
+    {
+        return 'flash_bag';
+    }
+}
+```
 
 ### Step 4 : Bind your listener
 	
-	services:
-	    notification.listener.flash_bag:
-	        class: PlanMyLife\NotificationBundle\EventListener\FlashBagNotificationListener
-	        arguments:
-	            - "%pml_notification.factory%"
-	            - "@notification.manager.flash_bag"
-	        tags:
-	            - { name: notification.event_subscriber, event: pml.notification }
+``` yaml
+services:
+    notification.listener.flash_bag:
+        class: PlanMyLife\NotificationBundle\EventListener\FlashBagNotificationListener
+        arguments:
+            - "%pml_notification.factory%"
+            - "@notification.manager.flash_bag"
+        tags:
+            - { name: notification.event_subscriber, event: pml.notification }
+```
 
 ### Step 5 : Test your notification
 
-	$object = new stdClass();
-	$object->title = 'Test title';
-	$object->content = 'Test Content';
-	$object->type = 'success';
-	$object->date = new \DateTime();
-	$object->params = [];
-	$this->get('notification.service')->notify($object, ['flash_bag'])
+``` php
+$object = new stdClass();
+$object->title = 'Test title';
+$object->content = 'Test Content';
+$object->type = 'success';
+$object->date = new \DateTime();
+$object->params = [];
+$this->get('notification.service')->notify($object, ['flash_bag'])
+```
 
