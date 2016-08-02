@@ -1,0 +1,5 @@
+services:
+    notification.factory:
+        class: PlanMyLife\NotificationBundle\Factory\NotificationBuilderFactory
+        arguments:
+            - '%pml_notification.builders%'

@@ -1,0 +1,13 @@
+imports:
+    - { resource: services/factories.yml }
+    - { resource: services/listeners.yml }
+    - { resource: services/managers.yml }
+
+services:
+    notification.event.dispatcher:
+        class: Symfony\Component\EventDispatcher\EventDispatcher
+
+    notification.service:
+        class: PlanMyLife\NotificationBundle\Service\NotificationService
+        arguments:
+            - "@notification.event.dispatcher"

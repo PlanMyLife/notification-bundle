@@ -1,0 +1,27 @@
+{
+    "name": "planmylife/notification-bundle",
+    "description": "Bundle to manage notification system",
+    "keywords": [
+        "symfony",
+        "notification",
+        "bundle"
+    ],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "blackreaven",
+            "email": "blackreaven@planmylife.io"
+        }
+    ],
+    "require": {
+        "php": "^5.4|^7.0",
+        "symfony/event-dispatcher": "^3.1",
+        "cleentfaar/slack-bundle": "~0.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "PlanMyLife\\NotificationBundle\\": ""
+        }
+    }
+}

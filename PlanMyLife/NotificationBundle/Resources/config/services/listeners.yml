@@ -1,0 +1,29 @@
+services:
+    notification.listener.log:
+        class: PlanMyLife\NotificationBundle\EventListener\LogNotificationListener
+        arguments:
+            - "@notification.factory"
+            - "@notification.manager.log"
+        tags:
+            - { name: notification.event_subscriber, event: pml.notification }
+    notification.listener.flash_bag:
+        class: PlanMyLife\NotificationBundle\EventListener\FlashBagNotificationListener
+        arguments:
+            - "@notification.factory"
+            - "@notification.manager.flash_bag"
+        tags:
+            - { name: notification.event_subscriber, event: pml.notification }
+    notification.listener.debug:
+        class: PlanMyLife\NotificationBundle\EventListener\DebugNotificationListener
+        arguments:
+            - "@notification.factory"
+            - "@notification.manager.debug"
+        tags:
+            - { name: notification.event_subscriber, event: pml.notification }
+    notification.listener.slack:
+        class: PlanMyLife\NotificationBundle\EventListener\SlackNotificationListener
+        arguments:
+            - "@notification.factory"
+            - "@notification.manager.slack"
+        tags:
+            - { name: notification.event_subscriber, event: pml.notification }
