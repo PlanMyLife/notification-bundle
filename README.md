@@ -6,7 +6,7 @@ The notification bundle was created for the planmylife.io to manage all notifica
 
 ### Step 1: Download the Bundle
 
-	composer require javiereguiluz/easyadmin-bundle
+	composer require planmylife/notification-bundle
 
 This command requires you to have Composer installed globally, as explained in the Composer documentation.
 
