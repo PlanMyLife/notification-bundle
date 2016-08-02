@@ -1,6 +1,7 @@
 {
     "name": "planmylife/notification-bundle",
     "description": "Bundle to manage notification system",
+    "homepage": "https://git.planmylife.io/planmylife/notification-bundle",
     "keywords": [
         "symfony",
         "notification",
