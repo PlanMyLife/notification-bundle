@@ -4,6 +4,12 @@ namespace PlanMyLife\NotificationBundle\Model;
 
 class Notification
 {
+    /** @var string */
+    protected $id;
+
+    /** @var integer */
+    protected $status;
+
     /** @var  string */
     protected $title;
 
@@ -18,6 +24,42 @@ class Notification
 
     /** @var  array */
     protected $params;
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $id
+     * @return $this;
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param int $status
+     * @return $this;
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
 
     /**
      * @return mixed
