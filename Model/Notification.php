@@ -2,27 +2,51 @@
 
 namespace PlanMyLife\NotificationBundle\Model;
 
+use JMS\Serializer\Annotation as Serializer;
+
 class Notification
 {
-    /** @var string */
+    /**
+     * @var string
+     * @Serializer\Type("string")
+     * @Serializer\Exclude()
+     */
     protected $id;
 
-    /** @var integer */
+    /**
+     * @var integer
+     * @Serializer\Type("integer")
+     */
     protected $status;
 
-    /** @var  string */
+    /**
+     * @var  string
+     * @Serializer\Type("string")
+     */
     protected $title;
 
-    /** @var  string */
+    /**
+     * @var  string
+     * @Serializer\Type("string")
+     */
     protected $content;
 
-    /** @var  string */
+    /**
+     * @var  string
+     * @Serializer\Type("string")
+     */
     protected $type;
 
-    /** @var  \DateTime */
+    /**
+     * @var  \DateTime
+     * @Serializer\Type("DateTime")
+     */
     protected $date;
 
-    /** @var  array */
+    /**
+     * @var array
+     * @Serializer\Type("array")
+     */
     protected $params;
 
     /**
