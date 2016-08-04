@@ -61,9 +61,10 @@ pml_notification:
 	{
 	    /**
 	     * @param User $target
+	     * @param mixed $type
 	     * @return Notification
 	     */
-	    public function build($target)
+	    public function build($target, $type = null)
 	    {
 	        $notification = new Notification();
 	        $notification->setTitle($target->getName());
@@ -74,6 +75,7 @@ pml_notification:
 	            'email' => $target->getEmail(), # Params for mailer manager
 	            'username' => $target->getUsername(), # Params for mailer/slack manager
 	            'channel' => 'notification' # Params for slack manager
+	            'template' => "Acme:Notification:$type.txt.twig"
 	        ]);
 
 	        return $notification;

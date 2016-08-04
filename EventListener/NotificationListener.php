@@ -69,12 +69,21 @@ abstract class NotificationListener implements NotificationListenerInterface, Ev
         }
 
         $subject = $event->getSubject();
+        $types = $event->getTypes();
         /** @var NotificationBuilderInterface $builder */
         $builder = $this->factory->generateBuilder(get_class($subject));
-        /** @var Notification $notification */
-        $notification = $builder->build($subject);
-
-        $this->manager->manage($notification);
+        if ($types && is_array($types) && !empty($type)) {
+            // If types define manage multiple type to custom notification build
+            foreach ($types as $type) {
+                /** @var Notification $notification */
+                $notification = $builder->build($subject, $type);
+                $this->manager->manage($notification);
+            }
+        } else {
+            /** @var Notification $notification */
+            $notification = $builder->build($subject);
+            $this->manager->manage($notification);
+        }
     }
 
     /**

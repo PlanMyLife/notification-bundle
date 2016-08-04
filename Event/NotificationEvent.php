@@ -14,10 +14,14 @@ class NotificationEvent extends Event
     /** @var  array */
     protected $channels;
 
-    public function __construct($subject, $channels = [])
+    /** @var array */
+    protected $types;
+
+    public function __construct($subject, $channels = [], $types = [])
     {
         $this->subject = $subject;
         $this->channels = $channels;
+        $this->types = $types;
     }
 
     /**
@@ -66,5 +70,23 @@ class NotificationEvent extends Event
     public function addChannel($channel)
     {
         array_push($this->channels, $channel);
+    }
+
+    /**
+     * @return array
+     */
+    public function getTypes()
+    {
+        return $this->types;
+    }
+
+    /**
+     * @param array $types
+     * @return $this;
+     */
+    public function setTypes($types)
+    {
+        $this->types = $types;
+        return $this;
     }
 }

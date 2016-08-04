@@ -22,13 +22,14 @@ class NotificationService
     /**
      * @param $object
      * @param array $channel
+     * @param array $types
      *
      * @return bool
      */
-    public function notify($object, array $channel = [])
+    public function notify($object, array $channel = [], $types = [])
     {
         if (is_object($object)) {
-            $event = new NotificationEvent($object, $channel);
+            $event = new NotificationEvent($object, $channel, $types);
             $this->dispatcher->dispatch(NotificationEvent::NAME, $event);
 
             return true;
