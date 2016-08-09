@@ -20,10 +20,3 @@ services:
             - "@notification.manager.debug"
         tags:
             - { name: notification.event_subscriber, event: pml.notification }
-    notification.listener.slack:
-        class: PlanMyLife\NotificationBundle\EventListener\SlackNotificationListener
-        arguments:
-            - "@notification.factory"
-            - "@notification.manager.slack"
-        tags:
-            - { name: notification.event_subscriber, event: pml.notification }
