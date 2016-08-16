@@ -3,3 +3,4 @@ services:
         class: PlanMyLife\NotificationBundle\Factory\NotificationBuilderFactory
         arguments:
             - '%pml_notification.builders%'
+            - '@service_container'

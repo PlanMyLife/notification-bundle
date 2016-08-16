@@ -2,6 +2,7 @@
 
 namespace PlanMyLife\NotificationBundle;
 
+use PlanMyLife\NotificationBundle\DependencyInjection\Compiler\NotificationBuilderCompilerPass;
 use PlanMyLife\NotificationBundle\DependencyInjection\Compiler\NotificationCompilerPass;
 use PlanMyLife\NotificationBundle\DependencyInjection\PlanMyLifeNotificationExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -27,5 +28,6 @@ class PlanMyLifeNotificationBundle extends Bundle
     {
         parent::build($container);
         $container->addCompilerPass(new NotificationCompilerPass());
+        $container->addCompilerPass(new NotificationBuilderCompilerPass());
     }
 }
