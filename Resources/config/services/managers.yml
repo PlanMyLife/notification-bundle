@@ -12,6 +12,6 @@ services:
         arguments:
             - "%kernel.environment%"
     notification.manager.mail:
-        class: PlanMyLife\NotificationBundle\Manager\DebugNotificationManager
+        class: PlanMyLife\NotificationBundle\Manager\MailNotificationManager
         arguments:
             - "@mailer"
