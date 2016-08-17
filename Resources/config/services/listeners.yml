@@ -20,3 +20,10 @@ services:
             - "@notification.manager.debug"
         tags:
             - { name: notification.event_subscriber, event: pml.notification }
+    notification.listener.mail:
+        class: PlanMyLife\NotificationBundle\EventListener\MailNotificationListener
+        arguments:
+            - "@notification.factory"
+            - "@notification.manager.mail"
+        tags:
+            - { name: notification.event_subscriber, event: pml.notification }

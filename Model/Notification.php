@@ -173,6 +173,14 @@ class Notification
         return $this->params;
     }
 
+    public function getParam($key, $default = null)
+    {
+        if ($this->params && is_array($this->params) && array_key_exists($key, $this->params)) {
+            return $this->params[$key];
+        }
+        return $default;
+    }
+
     /**
      * @param array $params
      * @return $this;
