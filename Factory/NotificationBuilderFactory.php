@@ -29,7 +29,7 @@ class NotificationBuilderFactory implements NotificationBuilderFactoryInterface
     /**
      * @param $class
      *
-     * @return NotificationBuilderInterface
+     * @return boolean|NotificationBuilderInterface
      */
     public function generateBuilder($class)
     {
@@ -38,5 +38,7 @@ class NotificationBuilderFactory implements NotificationBuilderFactoryInterface
                 return $this->container->get('pml_notification.builders.'.$key);
             }
         }
+
+        return false;
     }
 }

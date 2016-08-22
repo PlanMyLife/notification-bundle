@@ -4,7 +4,7 @@ namespace PlanMyLife\NotificationBundle\Manager;
 
 use PlanMyLife\NotificationBundle\Model\Notification;
 
-class SessionNotificationManager implements NotificationManagerInterface
+class SessionNotificationManager extends NotificationManager implements NotificationManagerInterface
 {
     public function manage(Notification $notification)
     {
