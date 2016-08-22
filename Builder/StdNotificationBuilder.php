@@ -6,7 +6,7 @@ use PlanMyLife\NotificationBundle\Model\Notification;
 
 class StdNotificationBuilder implements NotificationBuilderInterface
 {
-    public function build($target, $type = null)
+    public function build($target, $type = null, $destination = null)
     {
         $notification = new Notification();
         $notification->setId($target->id);
