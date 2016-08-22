@@ -25,7 +25,7 @@ class NotificationBuilderFactory implements NotificationBuilderFactoryInterface
     /**
      * @param $class
      *
-     * @return NotificationBuilderInterface
+     * @return boolean|NotificationBuilderInterface
      */
     public function generateBuilder($class)
     {
@@ -34,5 +34,7 @@ class NotificationBuilderFactory implements NotificationBuilderFactoryInterface
                 return new $builder['builder']();
             }
         }
+
+        return false;
     }
 }

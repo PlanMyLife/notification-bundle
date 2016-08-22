@@ -26,10 +26,10 @@ class NotificationService
      *
      * @return bool
      */
-    public function notify($object, array $channel = [], $types = [])
+    public function notify($object, array $destinations = [], $types = [])
     {
         if (is_object($object)) {
-            $event = new NotificationEvent($object, $channel, $types);
+            $event = new NotificationEvent($object, $destinations, $types);
             $this->dispatcher->dispatch(NotificationEvent::NAME, $event);
 
             return true;

@@ -2,6 +2,7 @@
 
 namespace PlanMyLife\NotificationBundle\Event;
 
+use PlanMyLife\NotificationBundle\Model\Destination;
 use Symfony\Component\EventDispatcher\Event;
 
 class NotificationEvent extends Event
@@ -12,15 +13,15 @@ class NotificationEvent extends Event
     protected $subject;
 
     /** @var  array */
-    protected $channels;
+    protected $destinations;
 
     /** @var array */
     protected $types;
 
-    public function __construct($subject, $channels = [], $types = [])
+    public function __construct($subject, $destinations = [], $types = [])
     {
         $this->subject = $subject;
-        $this->channels = $channels;
+        $this->destinations = $destinations;
         $this->types = $types;
     }
 
@@ -47,29 +48,27 @@ class NotificationEvent extends Event
     /**
      * @return array
      */
-    public function getChannels()
+    public function getDestinations()
     {
-        return $this->channels;
+        return $this->destinations;
     }
 
     /**
-     * @param array $channels
-     *
-     * @return $this
+     * @param array $destinations
+     * @return $this;
      */
-    public function setChannels($channels)
+    public function setDestinations($destinations)
     {
-        $this->channels = $channels;
-
+        $this->destinations = $destinations;
         return $this;
     }
 
     /**
-     * @param string $channel
+     * @param Destination $destination
      */
-    public function addChannel($channel)
+    public function addDestination($destination)
     {
-        array_push($this->channels, $channel);
+        array_push($this->destinations, $destination);
     }
 
     /**
