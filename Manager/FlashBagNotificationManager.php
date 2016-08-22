@@ -5,7 +5,7 @@ namespace PlanMyLife\NotificationBundle\Manager;
 use PlanMyLife\NotificationBundle\Model\Notification;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class FlashBagNotificationManager implements NotificationManagerInterface
+class FlashBagNotificationManager extends NotificationManager implements NotificationManagerInterface
 {
     /** @var  Session */
     protected $session;

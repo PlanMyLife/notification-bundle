@@ -4,7 +4,7 @@ namespace PlanMyLife\NotificationBundle\Manager;
 
 use PlanMyLife\NotificationBundle\Model\Notification;
 
-class DebugNotificationManager implements NotificationManagerInterface
+class DebugNotificationManager extends NotificationManager implements NotificationManagerInterface
 {
     /** @var  string */
     protected $appEnv;

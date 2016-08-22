@@ -4,7 +4,7 @@ namespace PlanMyLife\NotificationBundle\Manager;
 
 use PlanMyLife\NotificationBundle\Model\Notification;
 
-class MailNotificationManager implements NotificationManagerInterface
+class MailNotificationManager extends NotificationManager implements NotificationManagerInterface
 {
     /** @var  \Swift_Mailer */
     protected $mailer;
@@ -21,7 +21,7 @@ class MailNotificationManager implements NotificationManagerInterface
 
     public function manage(Notification $notification)
     {
-        if ($notification->hasParam('to') && $notification->hasParam('from')) {
+        if ($this->checkParams($notification)) {
             /** @var \Swift_Message $message */
             $message = $this->mailer->createMessage();
             $message->setDate($notification->getDate());
@@ -32,5 +32,10 @@ class MailNotificationManager implements NotificationManagerInterface
 
             $this->mailer->send($message);
         }
+    }
+
+    public function requiredParams()
+    {
+        return ['from', 'to'];
     }
 }
