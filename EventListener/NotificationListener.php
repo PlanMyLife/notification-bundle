@@ -100,12 +100,16 @@ abstract class NotificationListener implements NotificationListenerInterface, Ev
             foreach ($types as $type) {
                 /** @var Notification $notification */
                 $notification = $builder->build($subject, $type, $destination);
-                $this->manager->manage($notification);
+                if ($notification) {
+                    $this->manager->manage($notification);
+                }
             }
         } else {
             /** @var Notification $notification */
             $notification = $builder->build($subject, null, $destination);
-            $this->manager->manage($notification);
+            if ($notification) {
+                $this->manager->manage($notification);
+            }
         }
     }
 
