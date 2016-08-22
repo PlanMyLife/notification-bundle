@@ -13,11 +13,15 @@ class Destination implements DestinationInterface
      */
     protected $channel;
 
+    /**
+     * @var array
+     */
     protected $destination;
 
     /**
      * Destination constructor.
      * @param string $channel
+     * @param array $destination
      */
     public function __construct($channel, $destination)
     {
@@ -26,7 +30,7 @@ class Destination implements DestinationInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getChannel()
     {
@@ -34,7 +38,7 @@ class Destination implements DestinationInterface
     }
 
     /**
-     * @param mixed $channel
+     * @param string $channel
      * @return $this;
      */
     public function setChannel($channel)
@@ -44,7 +48,7 @@ class Destination implements DestinationInterface
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     public function getDestination()
     {
@@ -52,7 +56,7 @@ class Destination implements DestinationInterface
     }
 
     /**
-     * @param mixed $destination
+     * @param array $destination
      * @return $this;
      */
     public function setDestination($destination)
