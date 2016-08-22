@@ -11,7 +11,7 @@ services:
         class: PlanMyLife\NotificationBundle\Manager\DebugNotificationManager
         arguments:
             - "%kernel.environment%"
-    notification.manager.slack:
-        class: PlanMyLife\NotificationBundle\Manager\SlackNotificationManager
+    notification.manager.mail:
+        class: PlanMyLife\NotificationBundle\Manager\MailNotificationManager
         arguments:
-            - "@cl_slack.api_client"
+            - "@mailer"

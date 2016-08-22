@@ -26,5 +26,9 @@ class MailNotificationManager implements NotificationManagerInterface
         $message->setDate($notification->getDate());
         $message->setSubject($notification->getTitle());
         $message->setBody($notification->getContent());
+        $message->setFrom($notification->getParam('from'));
+        $message->setTo($notification->getParam('to'));
+
+        $this->mailer->send($message);
     }
 }
