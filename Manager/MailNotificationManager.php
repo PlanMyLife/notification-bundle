@@ -21,14 +21,16 @@ class MailNotificationManager implements NotificationManagerInterface
 
     public function manage(Notification $notification)
     {
-        /** @var \Swift_Message $message */
-        $message = $this->mailer->createMessage();
-        $message->setDate($notification->getDate());
-        $message->setSubject($notification->getTitle());
-        $message->setBody($notification->getContent());
-        $message->setFrom($notification->getParam('from'));
-        $message->setTo($notification->getParam('to'));
+        if ($notification->hasParam('to') && $notification->hasParam('from')) {
+            /** @var \Swift_Message $message */
+            $message = $this->mailer->createMessage();
+            $message->setDate($notification->getDate());
+            $message->setSubject($notification->getTitle());
+            $message->setBody($notification->getContent());
+            $message->setFrom($notification->getParam('from'));
+            $message->setTo($notification->getParam('to'));
 
-        $this->mailer->send($message);
+            $this->mailer->send($message);
+        }
     }
 }
