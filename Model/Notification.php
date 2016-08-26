@@ -86,7 +86,7 @@ class Notification
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getDate()
     {

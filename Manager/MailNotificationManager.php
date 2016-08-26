@@ -24,11 +24,14 @@ class MailNotificationManager extends NotificationManager implements Notificatio
         if ($this->checkParams($notification)) {
             /** @var \Swift_Message $message */
             $message = $this->mailer->createMessage();
-            $message->setDate($notification->getDate());
+            if ($notification->getDate() instanceof \DateTime) {
+                $message->setDate($notification->getDate()->getTimestamp());
+            }
             $message->setSubject($notification->getTitle());
             $message->setBody($notification->getContent());
             $message->setFrom($notification->getParam('from'));
             $message->setTo($notification->getParam('to'));
+            $message->setContentType($notification->getParam('content-type'));
 
             $this->mailer->send($message);
         }
@@ -36,6 +39,6 @@ class MailNotificationManager extends NotificationManager implements Notificatio
 
     public function requiredParams()
     {
-        return ['from', 'to'];
+        return ['from', 'to', 'content-type'];
     }
 }
