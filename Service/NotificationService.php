@@ -21,7 +21,7 @@ class NotificationService
 
     /**
      * @param $object
-     * @param array $channel
+     * @param array $destinations
      * @param array $types
      *
      * @return bool
