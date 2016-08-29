@@ -31,7 +31,7 @@ class MailNotificationManager extends NotificationManager implements Notificatio
             $message->setBody($notification->getContent());
             $message->setFrom($notification->getParam('from'));
             $message->setTo($notification->getParam('to'));
-            $message->setContentType($notification->getParam('content-type'));
+            $message->setContentType($notification->getParam('content-type', 'text/html'));
 
             $this->mailer->send($message);
         }
