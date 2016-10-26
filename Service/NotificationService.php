@@ -15,27 +15,25 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class NotificationService
 {
-    /** @var EventDispatcherInterface  */
+    /**
+     * @var EventDispatcherInterface
+     */
     protected $dispatcher;
+
+    /**
+     * @var boolean
+     */
+    protected $enable;
 
     public function __construct(EventDispatcherInterface $dispatcher)
     {
         $this->dispatcher = $dispatcher;
+        $this->enable = true;
     }
 
     public function disableNotification()
     {
-        /** @var EventSubscriberInterface $listener */
-        foreach ($this->dispatcher->getListeners() as $listener) {
-            if ($listener instanceof NotificationListenerInterface) {
-                /** @var Event $event */
-                foreach ($listener->getSubscribedEvents() as $event) {
-                    if ($event instanceof NotificationEvent) {
-                        $event->stopPropagation();
-                    }
-                }
-            }
-        }
+        $this->enable = false;
     }
 
     /**
@@ -47,7 +45,7 @@ class NotificationService
      */
     public function notify($object, array $destinations = [], $types = [])
     {
-        if (is_object($object)) {
+        if ($this->enable && is_object($object)) {
             $event = new NotificationEvent($object, $destinations, $types);
             $this->dispatcher->dispatch(NotificationEvent::NAME, $event);
 
