@@ -2,6 +2,8 @@
 
 The notification bundle was created for the planmylife.io to manage all notifications. Have fun with it.
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/5112ca11-0c7c-4e70-a087-8ebba4f1eb7f/mini.png)](https://insight.sensiolabs.com/projects/5112ca11-0c7c-4e70-a087-8ebba4f1eb7f)
+
 ## Installation
 
 ### Step 1: Download the Bundle
