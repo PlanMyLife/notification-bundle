@@ -30,8 +30,6 @@ class NotificationBuilderCompilerPass implements CompilerPassInterface
             }
 
             $definition = new Definition($builder['builder'], $arguments);
-            // get all arguments configured for this definition
-            $constructorArguments = $definition->getArguments();
             $container->addDefinitions(['pml_notification.builders.' . $key => $definition]);
         }
     }

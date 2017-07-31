@@ -8,6 +8,5 @@ class SessionNotificationManager extends NotificationManager implements Notifica
 {
     public function manage(Notification $notification)
     {
-        // TODO: Implement manage() method.
     }
 }
